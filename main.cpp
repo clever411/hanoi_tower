@@ -5,14 +5,14 @@
 
 #include <SFML/Graphics.hpp>
 
-#include <clever/SFML/CellPrinter.hpp>
-#include <clever/SFML/FieldAdapter.hpp>
+#include <lis/SFML/cell_printer.hpp>
+#include <lis/SFML/field_adapter.hpp>
 
 #include "HanoiTower.hpp"
 
 
 
-using namespace clever;
+using namespace lis;
 using namespace sf;
 using namespace std;
 
@@ -34,7 +34,7 @@ Event event;
 typedef Field<int> field_type;
 typedef CellPrinter<int> cellprinter_type;
 typedef FieldAdapter<
-	field_type::value_type, cellprinter_type
+	field_type, cellprinter_type
 > fieldadapter_type;
 
 HanoiTower tower;
@@ -62,15 +62,15 @@ void init_tower()
 
 	// create
 	HanoiTowerData d;
-	d.first = new int[HEIGHT];
+	d.first  = new int[HEIGHT];
 	d.second = new int[HEIGHT];
-	d.third = new int[HEIGHT];
+	d.third  = new int[HEIGHT];
 	d.height = HEIGHT;
 
 	// clear
-	memset(d.first, 0, sizeof(*d.first)*HEIGHT);
-	memset(d.second, 0, sizeof(*d.second)*HEIGHT);
-	memset(d.third, 0, sizeof(*d.third)*HEIGHT);
+	memset( d.first,  0, sizeof(*d.first)  * HEIGHT );
+	memset( d.second, 0, sizeof(*d.second) * HEIGHT );
+	memset( d.third,  0, sizeof(*d.third)  * HEIGHT );
 
 	// boid tower
 	for(size_t i = 0; i < HEIGHT; ++i)
@@ -102,7 +102,7 @@ void init_field()
 void init_fieldadapter()
 {
 	fieldadapter.setSize(
-		conversion<float>( window.getSize() )
+		makep<float>( window.getSize() )
 	);
 
 	fieldadapter.setField(
@@ -113,10 +113,13 @@ void init_fieldadapter()
 	);
 
 	fieldadapter.update();
+	// fieldadapter.setDrawGridEnable(true);
+	// setGridColor(Color::Blue).
+	// setGridThickness(3.0f);
 
 	fieldadapter.setPosition(
 		0.0f,
-		( window.getSize().x - fieldadapter.getSize().x ) / 2
+		( window.getSize().y - fieldadapter.getSize().y ) / 2
 	);
 
 	return;

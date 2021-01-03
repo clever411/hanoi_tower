@@ -5,7 +5,7 @@
 #include <future>
 #include <mutex>
 
-#include <clever/Field.hpp>
+#include <lis/field.hpp>
 
 
 
@@ -107,7 +107,7 @@ public:
 	 * не менее (1 + 2*(высота_башни-1))*3 + 2, 
 	 * и высотой не менее высоты башни
 	 */
-	HanoiTower &reflect(clever::Field<int> &f);
+	HanoiTower &reflect(lis::Field<int> &f);
 
 
 

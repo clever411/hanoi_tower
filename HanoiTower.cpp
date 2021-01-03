@@ -2,7 +2,7 @@
 
 
 using namespace std;
-using namespace clever;
+using namespace lis;
 
 
 
@@ -88,7 +88,7 @@ HanoiTower &HanoiTower::interrupt()
 	return *this;
 }
 
-HanoiTower &HanoiTower::reflect(clever::Field<int> &f)
+HanoiTower &HanoiTower::reflect(lis::Field<int> &f)
 {
 	
 	// check valid
@@ -102,7 +102,7 @@ HanoiTower &HanoiTower::reflect(clever::Field<int> &f)
 	if(
 		!f.d ||
 		f.h < d_.height ||
-		f.w < 3u*( 1u + 2u*( d_.height - 1u ) ) + 2u
+		f.w < 3*( 1 + 2*( d_.height - 1 ) ) + 2
 	)
 		throw "invalid size of filed";
 #endif
